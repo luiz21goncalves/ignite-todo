@@ -6,7 +6,7 @@ export function Header() {
     <header className={styles.header}>
       <img
         src={igniteTodoLogo}
-        alt="Imagem de um foguete decolando acompanhado da palavra 'todo'"
+        alt="Figura de um foguete decolando acompanhado da palavra 'todo'"
       />
     </header>
   );
