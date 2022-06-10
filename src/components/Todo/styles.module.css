@@ -1,0 +1,77 @@
+.todo {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  background: var(--gray-500);
+  border: 1px solid var(--gray-400);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.todo + .todo {
+  margin-top: 0.75rem;
+}
+
+.todo p {
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: var(--gray-100);
+}
+
+.done p {
+  color: var(--gray-300);
+  text-decoration: line-through;
+}
+
+.checkbox {
+  margin: 0.25rem;
+  border-radius: 50%;
+  width: 1.125rem;
+  height: 1.125rem;
+  border: 2px solid var(--blue-500);
+  background: transparent;
+  overflow: hidden;
+  font-size: unset;
+  transition: border-color 200ms, background-color 200ms;
+}
+
+.checkbox:hover {
+  border-color: var(--blue-700);
+}
+
+.checkbox[data-state="checked"] {
+  border-color: var(--purple-700);
+  background: var(--purple-700);
+}
+
+.checkbox[data-state="checked"]:hover {
+  border-color: var(--purple-500);
+  background: var(--purple-500);
+}
+
+.checkbox span {
+  color: var(--gray-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 200ms;
+}
+
+.button {
+  width: 1.5rem;
+  height: 1.5rem;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--gray-300);
+  transition: color 200ms, background-color 200ms;
+}
+
+.button:hover {
+  background: var(--gray-400);
+  color: var(--red-500);
+}
