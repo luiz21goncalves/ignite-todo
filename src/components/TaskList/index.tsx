@@ -8,10 +8,17 @@ type TodoListProps = {
   totalTodo: number;
   totalTodoCompleted: number;
   onToggleComplete: (id: string) => void;
+  onRemove: (id: string) => void;
 };
 
 export function TaskList(props: TodoListProps) {
-  const { todoList, totalTodo, totalTodoCompleted, onToggleComplete } = props;
+  const {
+    todoList,
+    totalTodo,
+    totalTodoCompleted,
+    onToggleComplete,
+    onRemove,
+  } = props;
 
   const completedTodoText = `${totalTodoCompleted} de ${totalTodo}`;
 
@@ -37,6 +44,7 @@ export function TaskList(props: TodoListProps) {
             text={todo.text}
             id={todo.id}
             onToggleComplete={onToggleComplete}
+            onRemove={onRemove}
           />
         ))
       ) : (

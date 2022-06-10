@@ -18,6 +18,10 @@ export function Home() {
     ]);
   }, []);
 
+  const removeTodo = useCallback((todoId: string) => {
+    setTodolist((prevState) => prevState.filter((todo) => todo.id !== todoId));
+  }, []);
+
   const toggleCompletedTodoState = useCallback(
     (todoId: string) => {
       const newTodoListState = todoList.reduce((acc, todo) => {
@@ -54,6 +58,7 @@ export function Home() {
           totalTodo={numberOfTotalTodo}
           totalTodoCompleted={numberOfTodoCompleted}
           onToggleComplete={toggleCompletedTodoState}
+          onRemove={removeTodo}
         />
       </main>
     </div>

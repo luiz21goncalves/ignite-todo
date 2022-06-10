@@ -10,16 +10,21 @@ type TodoProps = {
   text: string;
   id: string;
   onToggleComplete: (id: string) => void;
+  onRemove: (id: string) => void;
 };
 
 export function Todo(props: TodoProps) {
-  const { isDone = false, text, onToggleComplete, id } = props;
+  const { isDone = false, text, onToggleComplete, id, onRemove } = props;
 
   const [done, setDone] = useState(isDone);
 
   function handleToggleComplete() {
     onToggleComplete(id);
     setDone((prevState) => !prevState);
+  }
+
+  function handleRemoveTodo() {
+    onRemove(id);
   }
 
   return (
@@ -47,7 +52,11 @@ export function Todo(props: TodoProps) {
 
       <p>{text}</p>
 
-      <button type="button" className={styles.button}>
+      <button
+        type="button"
+        className={styles.button}
+        onClick={handleRemoveTodo}
+      >
         <Trash size={16} weight="bold" />
       </button>
     </div>
