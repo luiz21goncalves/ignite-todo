@@ -5,22 +5,26 @@ import styles from './styles.module.css';
 
 type TodoListProps = {
   todoList: TodoType[];
+  totalTodo: number;
+  totalTodoCompleted: number;
 };
 
 export function TaskList(props: TodoListProps) {
-  const { todoList } = props;
+  const { todoList, totalTodo, totalTodoCompleted } = props;
+
+  const completedTodoText = `${totalTodoCompleted} de ${totalTodo}`;
 
   return (
     <section className={styles.container}>
       <header className={styles.header}>
         <div className={styles.info}>
           <strong>Tarefas criadas</strong>
-          <span>0</span>
+          <span>{totalTodo}</span>
         </div>
 
         <div className={styles.info}>
           <strong>Concluídas</strong>
-          <span>0</span>
+          <span>{completedTodoText}</span>
         </div>
       </header>
 

@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 import shortid from 'shortid';
 
@@ -18,13 +18,23 @@ export function Home() {
     ]);
   }, []);
 
+  const numberOfTotalTodo = useMemo(() => todoList.length, [todoList]);
+  const numberOfTodoCompleted = useMemo(
+    () => todoList.reduce((acc, todo) => (todo.isDone ? acc + 1 : acc), 0),
+    [todoList],
+  );
+
   return (
     <div>
       <Header />
 
       <main className={styles.content}>
         <Form onAddTodo={addTodo} />
-        <TaskList todoList={todoList} />
+        <TaskList
+          todoList={todoList}
+          totalTodo={numberOfTotalTodo}
+          totalTodoCompleted={numberOfTodoCompleted}
+        />
       </main>
     </div>
   );
