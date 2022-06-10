@@ -14,6 +14,7 @@ export function Form(props: FormProps) {
   const [todoText, setTodoText] = useState('');
 
   function handleChangeTodoText(event: ChangeEvent<HTMLInputElement>) {
+    event.target.setCustomValidity('');
     setTodoText(event.target.value);
   }
 
@@ -25,6 +26,10 @@ export function Form(props: FormProps) {
     setTodoText('');
   }
 
+  function handleTodoTextInvalid(event: ChangeEvent<HTMLInputElement>) {
+    event.target.setCustomValidity('Esse campo é obrigatório');
+  }
+
   return (
     <form onSubmit={handleSubmitTodo} className={styles.form}>
       <input
@@ -32,7 +37,11 @@ export function Form(props: FormProps) {
         placeholder="Adicione uma nova tarefa"
         value={todoText}
         onChange={handleChangeTodoText}
+        name="todo"
+        required
+        onInvalid={handleTodoTextInvalid}
       />
+
       <button type="submit">
         Criar <PlusCircle size={20} />
       </button>
