@@ -1,23 +1,15 @@
 import clipboardImage from '../../assets/clipboard.png';
+import { Todo as TodoType } from '../../types';
 import { Todo } from '../Todo';
 import styles from './styles.module.css';
 
-const todos = [
-  {
-    id: 1,
-    isDone: false,
-    text:
-      'Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.',
-  },
-  {
-    id: 2,
-    isDone: true,
-    text:
-      'Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.',
-  },
-];
+type TodoListProps = {
+  todoList: TodoType[];
+};
 
-export function TaskList() {
+export function TaskList(props: TodoListProps) {
+  const { todoList } = props;
+
   return (
     <section className={styles.container}>
       <header className={styles.header}>
@@ -32,8 +24,8 @@ export function TaskList() {
         </div>
       </header>
 
-      {todos.length > 0 ? (
-        todos.map((todo) => (
+      {todoList.length > 0 ? (
+        todoList.map((todo) => (
           <Todo key={todo.id} isDone={todo.isDone} text={todo.text} />
         ))
       ) : (
