@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import * as PrimitiveCheckbox from '@radix-ui/react-checkbox';
 import { Trash } from 'phosphor-react';
 
@@ -6,14 +8,27 @@ import styles from './styles.module.css';
 type TodoProps = {
   isDone?: boolean;
   text: string;
+  id: string;
+  onToggleComplete: (id: string) => void;
 };
 
 export function Todo(props: TodoProps) {
-  const { isDone = false, text } = props;
+  const { isDone = false, text, onToggleComplete, id } = props;
+
+  const [done, setDone] = useState(isDone);
+
+  function handleToggleComplete() {
+    onToggleComplete(id);
+    setDone((prevState) => !prevState);
+  }
 
   return (
-    <div className={`${styles.todo} ${isDone && styles.done}`}>
-      <PrimitiveCheckbox.Root className={styles.checkbox} checked={isDone}>
+    <div className={`${styles.todo} ${done && styles.done}`}>
+      <PrimitiveCheckbox.Root
+        className={styles.checkbox}
+        checked={done}
+        onClick={handleToggleComplete}
+      >
         <PrimitiveCheckbox.CheckboxIndicator>
           <svg
             width="10"

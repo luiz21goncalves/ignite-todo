@@ -7,10 +7,11 @@ type TodoListProps = {
   todoList: TodoType[];
   totalTodo: number;
   totalTodoCompleted: number;
+  onToggleComplete: (id: string) => void;
 };
 
 export function TaskList(props: TodoListProps) {
-  const { todoList, totalTodo, totalTodoCompleted } = props;
+  const { todoList, totalTodo, totalTodoCompleted, onToggleComplete } = props;
 
   const completedTodoText = `${totalTodoCompleted} de ${totalTodo}`;
 
@@ -30,7 +31,13 @@ export function TaskList(props: TodoListProps) {
 
       {todoList.length > 0 ? (
         todoList.map((todo) => (
-          <Todo key={todo.id} isDone={todo.isDone} text={todo.text} />
+          <Todo
+            key={todo.id}
+            isDone={todo.isDone}
+            text={todo.text}
+            id={todo.id}
+            onToggleComplete={onToggleComplete}
+          />
         ))
       ) : (
         <div className={styles.emptyList}>

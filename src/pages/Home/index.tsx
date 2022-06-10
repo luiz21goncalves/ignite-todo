@@ -18,6 +18,25 @@ export function Home() {
     ]);
   }, []);
 
+  const toggleCompletedTodoState = useCallback(
+    (todoId: string) => {
+      const newTodoListState = todoList.reduce((acc, todo) => {
+        const currentTodo = todo;
+
+        if (todo.id === todoId) {
+          currentTodo.isDone = !todo.isDone;
+        }
+
+        acc.push(currentTodo);
+
+        return acc;
+      }, [] as Todo[]);
+
+      setTodolist(newTodoListState);
+    },
+    [todoList],
+  );
+
   const numberOfTotalTodo = useMemo(() => todoList.length, [todoList]);
   const numberOfTodoCompleted = useMemo(
     () => todoList.reduce((acc, todo) => (todo.isDone ? acc + 1 : acc), 0),
@@ -34,6 +53,7 @@ export function Home() {
           todoList={todoList}
           totalTodo={numberOfTotalTodo}
           totalTodoCompleted={numberOfTodoCompleted}
+          onToggleComplete={toggleCompletedTodoState}
         />
       </main>
     </div>
